@@ -32,6 +32,8 @@ class Product(models.Model):
     image = models.CharField(max_length=250)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     status = models.CharField(max_length=250, default="free", choices=STATUS)
+    price = models.FloatField()
+    description = models.TextField()
 
     def __str__(self):
         return '%s (%s)' % (self.name, self.category)
@@ -46,7 +48,9 @@ class Product(models.Model):
             'name': self.name,
             'image': self.image,
             'category': self.category.name,
-            'status': self.status
+            'status': self.status,
+            'description': self.description,
+            'price': self.price
         }
 
 class User(models.Model):
